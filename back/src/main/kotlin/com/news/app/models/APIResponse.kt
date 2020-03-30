@@ -1,3 +1,3 @@
 package com.news.app.models
 
-class APIResponse(status: String, totalResults: Int, articles: List<Article>)
+class APIResponse(var status: String, var totalResults: Int, var articles: List<Article>)

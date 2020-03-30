@@ -2,4 +2,5 @@ package com.news.app.models
 
 import java.util.*
 
-class Article(id: Int?, source: Source, author: String, description: String, url: String, urlToImage: String, publishedAt: Date, content: String)
+class Article(var source: Source?, var author: String?, var description: String?,
+              var url: String?, var urlToImage: String?, var publishedAt: Date?, var content: String?)
