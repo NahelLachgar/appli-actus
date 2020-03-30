@@ -11,6 +11,5 @@ import org.springframework.web.bind.annotation.RestController
 class NewsController {
  @GetMapping()
  fun getNews(): List<Article> {
-
  }
 }
