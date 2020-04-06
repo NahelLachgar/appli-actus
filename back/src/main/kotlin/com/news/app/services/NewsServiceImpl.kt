@@ -8,10 +8,12 @@ import com.news.app.models.APIResponse
 import com.news.app.models.Article
 import com.news.app.models.Source
 import com.news.app.models.Sources
+import com.news.app.repositories.NewsRepository
 import okhttp3.Headers
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Primary
 import org.springframework.stereotype.Service
@@ -20,7 +22,7 @@ import java.io.IOException
 @Service
 @Primary
 class NewsServiceImpl(
-        @Value("\${newsToken}") private val apiToken: String
+        private val newsRepository: NewsRepository, @Value("\${newsToken}") private val apiToken: String
 ) : NewsService {
     fun apiCall(url: String, headers: Headers? = null): Response? {
         val client = OkHttpClient();
@@ -72,11 +74,12 @@ class NewsServiceImpl(
     }
 
     override fun insertArticle(article: Article) {
-        TODO("Not yet implemented")
+        newsRepository.save(article)
     }
 
-    override fun getArticle(id: Int): Article {
-        TODO( "Not yet implemented")
+    override fun getArticle(id: Int): MutableIterable<Article> {
+        return newsRepository.findAll()
+
     }
 
 }

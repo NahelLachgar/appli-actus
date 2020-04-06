@@ -1,5 +1,7 @@
 package com.news.app.cache
 
+import com.news.app.models.Article
+import com.news.app.models.Source
 import com.news.app.repositories.NewsRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Primary
@@ -8,11 +10,12 @@ import org.springframework.stereotype.Service
 
 @Service
 @Primary
-class CacheDb<Any>(@Autowired var repo: NewsRepository): CustomCache<Any> {
-    override val cache: MutableIterable<kotlin.Any>
-        get() = repo.findAll()
+class CacheDb(@Autowired var repo: NewsRepository): CustomCache<Article> {
+     override val cache: MutableIterable<Article>
+   // override val cache: Article
+    get() = repo.findAll()
 
-    override fun updateCache(cache: Any) {
+    override fun updateCache(cache: Article) {
         repo.save(cache)
     }
 
