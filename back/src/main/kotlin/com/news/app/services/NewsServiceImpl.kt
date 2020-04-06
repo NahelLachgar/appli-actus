@@ -1,9 +1,7 @@
 package com.news.app.services
 
 import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
 import com.news.app.models.APIResponse
 import com.news.app.models.Article
 import com.news.app.models.Source
@@ -41,7 +39,7 @@ class NewsServiceImpl(
         var url = "http://newsapi.org/v2/top-headlines?country=$country";
         if (query != null) url+= "&q=$query";
         if (category != null) url+="&category=$category";
-        url+="&apiKey="+apiToken;
+        url+= "&apiKey=$apiToken";
         val response = apiCall(url);
         try {
             val mapper = jacksonObjectMapper();
@@ -56,8 +54,7 @@ class NewsServiceImpl(
     }
 
     override fun getSources(): List<Source>? {
-        var url = "https://newsapi.org/v2/sources?apiKey="+apiToken;
-
+        var url = "https://newsapi.org/v2/sources?apiKey=$apiToken";
         val response = apiCall(url);
          try {
             val mapper = jacksonObjectMapper();

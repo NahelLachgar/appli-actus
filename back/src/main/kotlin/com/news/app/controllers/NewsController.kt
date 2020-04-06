@@ -19,6 +19,11 @@ class NewsController(@Autowired val newsService: NewsService) {
    );
  }
 
+    @GetMapping("/article")
+    fun getArticle(@RequestParam(name="id") id: Int): Article {
+        return newsService.getArticle(id);
+    }
+
     @GetMapping("/sources")
     fun getSources(): List<Source>? {
         return newsService.getSources();
