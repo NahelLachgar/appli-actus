@@ -27,5 +27,4 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: Package
-    - run: |
-        ls -la
+    - run: ls -la
