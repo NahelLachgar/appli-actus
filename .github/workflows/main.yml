@@ -28,4 +28,4 @@ jobs:
     # Runs a single command using the runners shell
     - name: Package
       working-directory: ./back
-      run: mvn package
+      run: mvn -newsToken=${{ SECRETS.NEWS_TOKEN }} -spring.datasource.username=${{ SECRETS.POSTGRESQL_USERNAME}} -spring.datasource.password=${{ SECRETS.POSTGRESQL_PASSWORD}} package
