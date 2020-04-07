@@ -27,7 +27,5 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: Package
-    - run: pwd 
-    - run: ls
-    - run: cd back
-    - run: mvn package
+      run: |
+        ls -la
