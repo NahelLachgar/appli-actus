@@ -20,11 +20,6 @@ class NewsController(@Autowired val newsService: NewsService, @Autowired val new
        );
      }
 
-    @GetMapping("/article")
-    fun getArticle(@RequestParam(name="id") id: Int): Article {
-        return newsService.getArticle(id);
-    }
-
     @GetMapping("/sources")
     fun getSources(): List<Source>? {
         return newsService.getSources();
@@ -32,12 +27,12 @@ class NewsController(@Autowired val newsService: NewsService, @Autowired val new
 
     @GetMapping("/insertArticle")
     fun insertArticle() {
-        var article = Article( id =0, author ="test", description ="test" , url ="test", urlToImage ="test", publishedAt =null, content ="test" )
+        var article = Article( id = 0, author ="test", description ="test" , url ="test", urlToImage ="test", publishedAt =null, content ="test" )
         newsService.insertArticle(article);
     }
 
     @GetMapping("/article/{id}")
-    fun getArticle(@PathVariable(name="id") id: Int): MutableIterable<Article> {
+    fun getArticle(@PathVariable(name="id") id: Int): Article? {
         return newsService.getArticle(id)
     }
 }

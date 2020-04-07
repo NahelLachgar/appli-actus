@@ -14,6 +14,7 @@ import okhttp3.Response
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Primary
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import java.io.IOException
 
@@ -74,8 +75,8 @@ class NewsServiceImpl(
         newsRepository.save(article)
     }
 
-    override fun getArticle(id: Int): MutableIterable<Article> {
-        return newsRepository.findAll()
+    override fun getArticle(id: Int): Article? {
+        return newsRepository.findByIdOrNull(id)
 
     }
 

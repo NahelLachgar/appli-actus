@@ -7,4 +7,4 @@ import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface NewsRepository : CrudRepository<Article, String?>
+interface NewsRepository : CrudRepository<Article, Int>
