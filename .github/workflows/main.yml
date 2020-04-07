@@ -30,6 +30,6 @@ jobs:
       working-directory: ./back
       run: mvn package
       env:
-        newsToken=${{ SECRETS.NEWS_TOKEN }}
-        spring.datasource.username=${{ SECRETS.POSTGRESQL_USERNAME}}
-        spring.datasource.password=${{ SECRETS.POSTGRESQL_PASSWORD}}
+        newsToken=${{ secrets.NEWS_TOKEN }}
+        spring.datasource.username=${{ secrets.POSTGRESQL_USERNAME}}
+        spring.datasource.password=${{ secrets.POSTGRESQL_PASSWORD}}
