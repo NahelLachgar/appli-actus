@@ -17,15 +17,15 @@ jobs:
           java-version: 
             1.8
     - name: Package
-      working-directory: ./back/target
+      working-directory: ./back
       run: |
         mvn clean install
         mvn package
-    - name: Upload math result for job 1
+    - name: Upload target
       uses: actions/upload-artifact@v1
       with:
         name: target
-        path: .
+        path: back/target
   dockerize:
     needs: [java-build]
     runs-on: ubuntu-latest
