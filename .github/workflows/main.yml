@@ -15,6 +15,7 @@ jobs:
           java-version: 1.8
       - name: Maven Package
         run: ls -la
+        working-directory: ./back
   artifact:
     name: Publish - GitHub Packages
     runs-on: ubuntu-18.04
@@ -28,6 +29,7 @@ jobs:
           java-version: 1.8
       - name: Publish artifact on GitHub Packages
         run: mvn -B clean deploy -DskipTests
+        working-directory: ./back
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -47,7 +49,10 @@ jobs:
           java-version: 1.8
       - name: Login to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        working-directory: ./back
       - name: Build Docker image
         run: docker build -t nahellachgar/appli-actus:latest -t .
+        working-directory: ./back
       - name: Publish Docker image
         run: docker push nahellachgar/appli-actus:latest
+        working-directory: ./back
