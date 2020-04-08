@@ -18,7 +18,9 @@ jobs:
             1.8
     - name: Package
       working-directory: ./back
-      run: mvn package
+      run: |
+        mvn clean install
+        mvn package
   dockerize:
     needs: [java-build]
     runs-on: ubuntu-latest
