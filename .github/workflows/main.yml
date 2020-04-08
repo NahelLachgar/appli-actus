@@ -9,11 +9,13 @@ jobs:
     name: Build
     runs-on: ubuntu-18.04
     steps:
+      - working-directory: ./back
       - uses: actions/checkout@v1
       - name: Set up JDK 11
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      - working-directory: ./back
       - name: Maven Package
         run: mvn package
   artifact:
@@ -22,11 +24,13 @@ jobs:
     needs: [build]
 
     steps:
+      - working-directory: ./back
       - uses: actions/checkout@v1
       - name: Set up JDK 11
         uses: actions/setup-java@v1
         with:
           java-version: 11.0.4
+      - working-directory: ./back
       - name: Publish artifact on GitHub Packages
         run: mvn -B clean deploy -DskipTests
         env:
@@ -41,14 +45,18 @@ jobs:
       REPO: ${{ secrets.DOCKER_REPO }}
 
     steps:
+      - working-directory: ./back
       - uses: actions/checkout@v1
       - name: Set up JDK 1.8
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      - working-directory: ./back
       - name: Login to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - working-directory: ./back
       - name: Build Docker image
         run: docker build -t nahellachgar/appli-actus:latest -t .
+      - working-directory: ./back
       - name: Publish Docker image
         run: docker push nahellachgar/appli-actus:latest
