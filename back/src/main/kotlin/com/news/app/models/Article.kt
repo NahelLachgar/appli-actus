@@ -8,7 +8,8 @@ data class Article(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         var id: Int? = null,
-        //var source: Source?,
+        @ManyToOne(cascade = [CascadeType.PERSIST])
+        var source: Source? = Source(),
         var author: String? = "",
         var description: String? = "",
         var url: String? = "",

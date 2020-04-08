@@ -77,7 +77,6 @@ class NewsServiceImpl(
 
     override fun getArticle(id: Int): Article? {
         return newsRepository.findByIdOrNull(id)
-
     }
 
 }

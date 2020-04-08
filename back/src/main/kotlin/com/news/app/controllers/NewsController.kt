@@ -21,14 +21,8 @@ class NewsController(@Autowired val newsService: NewsService, @Autowired val new
      }
 
     @GetMapping("/sources")
-    fun getSources(): List<Source>? {
+        fun getSources(): List<Source>? {
         return newsService.getSources();
-    }
-
-    @GetMapping("/insertArticle")
-    fun insertArticle() {
-        var article = Article( id = 0, author ="test", description ="test" , url ="test", urlToImage ="test", publishedAt =null, content ="test" )
-        newsService.insertArticle(article);
     }
 
     @GetMapping("/article/{id}")

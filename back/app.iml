@@ -156,5 +156,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.xmlunit:xmlunit-core:2.6.3" level="project" />
     <orderEntry type="library" name="Maven: com.squareup.okhttp3:okhttp:4.5.0-RC1" level="project" />
     <orderEntry type="library" name="Maven: com.squareup.okio:okio:2.4.3" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: com.h2database:h2:1.4.200" level="project" />
   </component>
 </module>
