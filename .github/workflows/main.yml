@@ -21,17 +21,27 @@ jobs:
       run: |
         mvn clean install
         mvn package
+    - name: Upload target
+      uses: actions/upload-artifact@v1
+      with:
+        name: target
+        path: back/target
   dockerize:
     needs: [java-build]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: build
-      working-directory: ./
-      run: |
-        ls
-        docker build -t nahellachgar/appli-actus:latest .
-        docker push nahellachgar/appli-actus:tagname    
+      - name: download
+        uses: actions/download-artifact@v1
+        with:
+          name: target
+      - name: docker
+        uses: actions/checkout@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: build
+        working-directory: ./
+        run: |
+          ls
+          docker build -t nahellachgar/appli-actus:latest .
+          docker push nahellachgar/appli-actus:tagname    
