@@ -29,5 +29,6 @@ jobs:
     - name: build
       working-directory: .
       run: |
+        ls
         docker build -t nahellachgar/appli-actus:latest .
         docker push nahellachgar/appli-actus:tagname    
