@@ -21,6 +21,11 @@ jobs:
       run: |
         mvn clean install
         mvn package
+    - name: Upload math result for job 1
+      uses: actions/upload-artifact@v1
+      with:
+        name: target
+        path: target/*.jar
   dockerize:
     needs: [java-build]
     runs-on: ubuntu-latest
@@ -28,7 +33,7 @@ jobs:
       - name: download
         uses: actions/download-artifact@v1
         with:
-          name: homework
+          name: target
       - name: docker
         uses: actions/checkout@v2
         with:
