@@ -20,6 +20,7 @@ jobs:
       working-directory: ./back
       run: mvn package
   dockerize:
+    needs: [java-build]
     runs-on: ubuntu-latest
     steps:
     - uses: Azure/docker-login@v1
