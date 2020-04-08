@@ -29,9 +29,7 @@ jobs:
     - name: Package
       working-directory: ./back
       run: mvn package
-  dockerize:
-    runs-on: ubuntu-latest
-    steps:
+    - name: Dockerize
     - uses: Azure/docker-login@v1
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
