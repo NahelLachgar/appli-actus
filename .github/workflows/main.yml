@@ -1,5 +1,4 @@
 name: Master Branch
-
 on:
   push:
     branches:
