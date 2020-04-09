@@ -37,6 +37,7 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: target
+          path: back/target
       - name: build
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
