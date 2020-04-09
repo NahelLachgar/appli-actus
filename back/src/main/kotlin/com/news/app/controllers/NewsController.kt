@@ -1,5 +1,6 @@
 package com.news.app.controllers
 
+import com.news.app.models.APIResponse
 import com.news.app.models.Article
 import com.news.app.models.Source
 import com.news.app.repositories.NewsRepository
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*
 class NewsController(@Autowired val newsService: NewsService, @Autowired val newsRepository: NewsRepository ) {
 
      @GetMapping()
-     fun getNews(@RequestParam(name="category") category: String?, @RequestParam(name="query") query: String?): List<Article>? {
+     fun getNews(@RequestParam(name="category") category: String?, @RequestParam(name="query") query: String?): APIResponse? {
        return newsService.getNews(
                country="fr",
                category = category,

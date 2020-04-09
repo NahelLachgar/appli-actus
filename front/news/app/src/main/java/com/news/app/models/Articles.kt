@@ -1,5 +1,3 @@
 package com.news.app.models
 
-data class Articles(
-    var articles: List<Article>
-)
+data class APIResponse(var status: String, var totalResults: Int, var articles: List<Article>)

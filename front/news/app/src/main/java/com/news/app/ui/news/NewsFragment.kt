@@ -5,17 +5,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.ListAdapter
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.news.app.R
+import com.news.app.models.APIResponse
 import com.news.app.models.Article
-import com.news.app.models.Articles
 import com.news.app.models.Source
 import kotlinx.android.synthetic.main.fragment_news.*
 import okhttp3.*
@@ -58,8 +55,8 @@ class NewsFragment : Fragment() {
         fun newInstance(): NewsFragment = NewsFragment()
     }
 
-    val article1 = Article(0, Source(id=0, name="BFMERDE"),"Auteur","Description","URL", content = "Contenu de l'article");
-    val article2 = Article(1, Source(id=1, name="L'ÉQUIPE"),"Auteur","Description","URL", content = "Contenu de l'article")
+    val article1 = Article(id=0, source=Source(name="BFMERDE"),author = "Auteur", description = "Description",url="URL", content = "Contenu de l'article");
+    val article2 = Article(id=1, source=Source(name="BFMERDE"),author = "Auteur", description = "Description",url="URL", content = "Contenu de l'article");
     var articles = listOf<Article>(article1, article2);
 
     fun getNews() {
@@ -76,12 +73,11 @@ class NewsFragment : Fragment() {
 
             @Throws(IOException::class)
             override fun onResponse(call: Call, response: Response) {
-                Log.i("getNews", response.body?.string())
                 val mapper = ObjectMapper()
                 mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-                val result: Articles = mapper.readValue<Articles>(
+                val result: APIResponse = mapper.readValue<APIResponse>(
                     response.body?.byteStream(),
-                    Articles::class.java
+                    APIResponse::class.java
                 )
                 articles = result.articles;
             }

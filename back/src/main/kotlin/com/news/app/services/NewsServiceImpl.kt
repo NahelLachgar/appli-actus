@@ -38,7 +38,7 @@ class NewsServiceImpl(
         }
     }
 
-    override fun getNews(country: String, category: String?, query: String?): List<Article>? {
+    override fun getNews(country: String, category: String?, query: String?): APIResponse? {
         var url = "http://newsapi.org/v2/top-headlines?country=$country";
         if (query != null) url+= "&q=$query";
         if (category != null) url+="&category=$category";
@@ -48,7 +48,7 @@ class NewsServiceImpl(
             val mapper = jacksonObjectMapper();
             mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             val res = mapper.readValue(response?.body?.byteStream(), APIResponse::class.java);
-            return res.articles;
+            return res;
         }
         catch(e: Exception)  {
             e.printStackTrace();
