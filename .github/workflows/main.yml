@@ -43,7 +43,8 @@ jobs:
       - name: build
         working-directory: ./
         run: |
-          ls
+          ls -la back
+          ls back/target
           mv *.jar back/target/app.jar
           docker build -t nahellachgar/appli-actus:latest ./back
           docker push nahellachgar/appli-actus:tagname    
