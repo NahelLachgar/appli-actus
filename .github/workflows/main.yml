@@ -21,11 +21,12 @@ jobs:
       run: |
         mvn clean install
         mvn package
+        mv target/*jar target/app.jar
     - name: Upload target
       uses: actions/upload-artifact@v1
       with:
         name: target
-        path: back/target/*.jar
+        path: back/target/app.jar
   dockerize:
     needs: [java-build]
     runs-on: ubuntu-latest
