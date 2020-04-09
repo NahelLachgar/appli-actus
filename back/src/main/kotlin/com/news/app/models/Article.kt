@@ -8,7 +8,7 @@ data class Article(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         var id: Int? = null,
-        @ManyToOne(cascade = [CascadeType.PERSIST])
+        @Transient
         var source: Source? = Source(),
         var author: String? = "",
         var description: String? = "",
