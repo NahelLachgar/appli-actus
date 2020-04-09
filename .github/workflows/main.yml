@@ -25,7 +25,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: target
-        path: back/target
+        path: back/target/*.jar
   dockerize:
     needs: [java-build]
     runs-on: ubuntu-latest
@@ -42,7 +42,6 @@ jobs:
       - name: build
         working-directory: ./
         run: |
-          ls
           ls back/target
-          docker build -t nahellachgar/appli-actus:latest .
+          docker build -t nahellachgar/appli-actus:latest ./back
           docker push nahellachgar/appli-actus:tagname    
