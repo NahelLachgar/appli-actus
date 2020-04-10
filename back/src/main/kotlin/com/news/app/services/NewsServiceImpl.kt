@@ -39,7 +39,7 @@ class NewsServiceImpl(
     }
 
     override fun getNews(country: String, category: String?, query: String?): APIResponse? {
-        var url = "http://newsapi.org/v2/top-headlines?country=$country";
+        var url = "https://newsapi.org/v2/top-headlines?country=$country";
         if (query != null) url+= "&q=$query";
         if (category != null) url+="&category=$category";
         url+= "&apiKey=$apiToken";

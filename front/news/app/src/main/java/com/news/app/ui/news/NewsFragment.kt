@@ -55,8 +55,8 @@ class NewsFragment : Fragment() {
         fun newInstance(): NewsFragment = NewsFragment()
     }
 
-    val article1 = Article(id=0, source=Source(name="BFMERDE"),author = "Auteur", description = "Description",url="URL", content = "Contenu de l'article");
-    val article2 = Article(id=1, source=Source(name="BFMERDE"),author = "Auteur", description = "Description",url="URL", content = "Contenu de l'article");
+    val article1 = Article(id=0, source=Source(name="Source"),author = "Auteur", description = "Description",url="URL", content = "Contenu de l'article");
+    val article2 = Article(id=1, source=Source(name="Source"),author = "Auteur", description = "Description",url="URL", content = "Contenu de l'article");
     var articles = listOf<Article>(article1, article2);
 
     fun getNews() {
@@ -64,7 +64,7 @@ class NewsFragment : Fragment() {
 
         val client = OkHttpClient()
         val request: Request = Request.Builder()
-            .url("http://192.168.0.37:8080/api/news")
+            .url("http://ec2-35-180-30-108.eu-west-3.compute.amazonaws.com:8080/api/news")
             .build()
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
