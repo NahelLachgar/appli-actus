@@ -12,9 +12,6 @@ import org.springframework.stereotype.Service
 @Service
 @Primary
 class CacheDb(@Autowired var repo: NewsRepository): CustomCache<Article> {
-    //override val cache: MutableIterable<Article>
-    // override val cache: Article
-    //get() = repo.findAll()
 
     override fun findByArticleId(id: Int) : Article?{
         return repo.findByIdOrNull(id)
